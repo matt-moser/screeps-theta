@@ -84,7 +84,7 @@ module.exports = {
                 var extTarget = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_EXTENSION) &&
-                            structurestructure.energy < structure.energyCapacity;
+                            structure.energy < structure.energyCapacity;
                     }
                 });
                 var target = spawnTarget ? spawnTarget : extTarget;
