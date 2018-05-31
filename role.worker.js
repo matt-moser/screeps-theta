@@ -1,3 +1,7 @@
+const currentSpawn = creep.room.find(FIND_MY_STRUCTURES, {
+    filter: { structureType: STRUCTURE_SPAWN }
+})
+
 function buildConstructionSite() {
     console.log(JSON.stringify(currentSpawn[0]))
     console.log(JSON.stringify(currentSpawn[0].pos))
