@@ -1,4 +1,9 @@
 const buildConstructionSite = function (creep) {
+
+    const currentSpawn = creep.room.find(FIND_MY_STRUCTURES, {
+        filter: { structureType: STRUCTURE_SPAWN }
+    })
+    
     console.log(JSON.stringify(currentSpawn[0]))
     console.log(JSON.stringify(currentSpawn[0].pos))
     var currentRoomPosition = currentSpawn[0].pos
@@ -31,11 +36,6 @@ const buildConstructionSite = function (creep) {
 
 module.exports = {
     run: function(creep){
-        const currentSpawn = creep.room.find(FIND_MY_STRUCTURES, {
-            filter: { structureType: STRUCTURE_SPAWN }
-        })
-        
-
         if (creep.carry.energy < creep.carryCapacity) {
             creep.say('🔄 harvest');
             var source = creep.pos.findClosestByPath(FIND_SOURCES);
