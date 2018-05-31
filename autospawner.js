@@ -6,7 +6,7 @@ const roleSpecs = {
 
 const autoSpawner = function autoSpawner () {
     const desiredRoles = {
-        worker: 8,
+        worker: 12,
         upgrader: 6,
         claimer: 3
     }
