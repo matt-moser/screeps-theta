@@ -36,10 +36,9 @@ const buildConstructionSite = function (creep) {
 
 module.exports = {
     run: function(creep){
-        if (creep.memory.building && creep.carry.energy = 0) {
+        if (creep.memory.building && creep.carry.energy === 0) {
             creep.memory.building = false
         }
-
         
         if (!creep.memory.building && creep.carry.energy < creep.carryCapacity) {
             creep.say('🔄 harvest');
@@ -51,7 +50,6 @@ module.exports = {
             creep.memory.harvesting = false;
             creep.memory.building = true;
         }
-
 
         if (creep.memory.harvesting) {
             
