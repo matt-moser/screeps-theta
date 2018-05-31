@@ -63,13 +63,13 @@ module.exports = {
                 creep.say('🔄 return');
                 var spawnTarget = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
+                        return (tructure.structureType == STRUCTURE_SPAWN) &&
                             structure.energy < structure.energyCapacity;
                     }
                 });
                 var extTarget = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
+                        return (structure.structureType == STRUCTURE_EXTENSION) &&
                             structure.energy < structure.energyCapacity;
                     }
                 });
