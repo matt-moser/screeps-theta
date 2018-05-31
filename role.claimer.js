@@ -23,37 +23,6 @@ module.exports = {
             filter: { structureType: STRUCTURE_SPAWN }
         })
 
-        if((notBuiltExtensions.length + extensions.length) < 2) {
-            console.log(JSON.stringify(currentSpawn[0]))
-            console.log(JSON.stringify(currentSpawn[0].pos))
-            var currentRoomPosition = currentSpawn[0].pos
-            var xPosition = currentRoomPosition.x
-            var yPosition = currentRoomPosition.y
-            var shouldContinue = true
-            var counter = 0
-
-            while(shouldContinue && counter < 50) {
-                var xDelta = Math.floor(Math.random() * 10) - 5
-                var yDelta = Math.floor(Math.random() * 10) - 5
-
-                var viablePosition = creep.room.getPositionAt(xPosition + xDelta, yPosition + yDelta)
-                console.log(JSON.stringify(viablePosition))
-                if(viablePosition) {
-                    var objects = viablePosition.look()
-                    console.log(JSON.stringify(objects))
-                    if(objects.length == 1 && objects[0].type == "terrain" && objects[0].terrain == "plain") {
-                        console.log("Creating extension...")
-                        creep.room.visual.circle(xPosition + xDelta, yPosition + yDelta)
-                        var value = creep.room.createConstructionSite(xPosition + xDelta, yPosition + yDelta, STRUCTURE_EXTENSION)
-                        console.log(value)
-                        shouldContinue = false
-                    }
-                }
-
-                counter++
-            }
-        }
-
         if(creep.memory.building) {
             var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
             if(targets.length) {
