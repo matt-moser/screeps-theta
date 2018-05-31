@@ -1,3 +1,10 @@
+const roleSpecs = {
+    harvester: [WORK, CARRY, MOVE],
+    upgrader: [WORK, CARRY, MOVE],
+    builder: [WORK, CARRY, MOVE],
+    claimer: [WORK, CARRY, MOVE, CLAIM]
+}
+
 const autoSpawner = function autoSpawner () {
     const desiredRoles = {
         harvester: 3,
@@ -19,7 +26,7 @@ const autoSpawner = function autoSpawner () {
     if (spawn) {
         for(let name in Game.spawns) {
             const newName = nextRole + Game.time;
-            const result = Game.spawns[name].spawnCreep([WORK, CARRY, MOVE], newName, {
+            const result = Game.spawns[name].spawnCreep(roleSpecs[nextRole], newName, {
                 memory: {role: nextRole}
             })
             if (result >= 0) {
