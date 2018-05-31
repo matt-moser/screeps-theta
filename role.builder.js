@@ -15,12 +15,14 @@ module.exports = {
                 filter: { structureType: STRUCTURE_EXTENSION }
             });
 
-            const notBuiltExtensions = creep.room.find(FIND_CONSTRUCTION_SITES, {
-                filter: { structureType: STRUCTURE_EXTENSION }
-            })
+            if (extensions.length < 5) {
+                const target = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES, {
+                    filter: { structureType: STRUCTURE_EXTENSION }
+                })
 
-            if((notBuiltExtensions.length + extensions.length) < 5) {
-                creep.room.createConstructionSite(STRUCTURE_EXTENSION)
+                if (creep.build(target) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
+                }
             }
         }
 
