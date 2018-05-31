@@ -12,7 +12,7 @@ module.exports = {
                 // move towards the controller
                 creep.moveTo(creep.room.controller);
             } else if (r === ERR_GCL_NOT_ENOUGH){
-                const reserve = creep.reserveController(creep.room.controller);
+                const reserve = creep.claimController(creep.room.controller);
                 if (reserve !== 0) {
                     console.log('Claimer reserving error: ' + re);
                     creep.moveTo(creep.room.controller);
