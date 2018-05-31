@@ -1,7 +1,4 @@
 const buildConstructionSite = function (creep) {
-    if(Math.random() < .25){
-        return;
-    }
     const currentSpawn = creep.room.find(FIND_MY_STRUCTURES, {
         filter: { structureType: STRUCTURE_SPAWN }
     })
