@@ -1,4 +1,7 @@
 const buildConstructionSite = function (creep) {
+    if(Math.random() < .25){
+        return;
+    }
     const currentSpawn = creep.room.find(FIND_MY_STRUCTURES, {
         filter: { structureType: STRUCTURE_SPAWN }
     })
@@ -85,10 +88,6 @@ module.exports = {
                         creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
                     }
                 }
-                else{
-                    buildConstructionSite(creep);
-                    creep.say('⁉️ Nowhere to return resources and nothing to build');
-                }
             } else {
                 creep.say('🚧 build');
                 var target = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
@@ -96,6 +95,10 @@ module.exports = {
                     if(creep.build(target) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
                     }
+                }
+                else{
+                    buildConstructionSite(creep);
+                    creep.say('⁉️ Nowhere to return resources and nothing to build');
                 }
             }
         }

@@ -1,7 +1,7 @@
 const roleSpecs = {
     worker: [WORK, CARRY, MOVE],
     upgrader: [WORK, CARRY, MOVE],
-    claimer: [WORK, CARRY, MOVE, CLAIM]
+    claimer: [MOVE, CLAIM]
 }
 
 const autoSpawner = function autoSpawner () {
@@ -31,6 +31,9 @@ const autoSpawner = function autoSpawner () {
             if (result >= 0) {
                 console.log('Succesfully Spawning Creep:' + newName)
             }
+            else (
+                console.log('Failed to spawn ' + nextRole + '.  Code ' + result)
+            )
         }
     }
 }
