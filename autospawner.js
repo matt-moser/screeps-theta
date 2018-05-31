@@ -12,20 +12,24 @@ const autoSpawner = function autoSpawner () {
     }
 
     let nextRole = 'harvester';
+    let spawn = false;
     for(let role in desiredRoles) {
         if (roleMap[role] < desiredRoles[role]) {
             nextRole = role;
+            spawn = true;
             break;
         }
     }
 
-    for(let name in Game.spawns) {
-        const newName = nextRole + (roleMap[nextRole] ? roleMap[nextRole] + 1 : 1);
-        const result = Game.spawns[name].spawnCreep([WORK, CARRY, MOVE], newName, {
-            memory: {role: nextRole}
-        })
-        if (result >= 0) {
-            console.log('Succesfully Spawning Creep:' + newName)
+    if (spawn) {
+        for(let name in Game.spawns) {
+            const newName = nextRole + (roleMap[nextRole] ? roleMap[nextRole] + 1 : 1);
+            const result = Game.spawns[name].spawnCreep([WORK, CARRY, MOVE], newName, {
+                memory: {role: nextRole}
+            })
+            if (result >= 0) {
+                console.log('Succesfully Spawning Creep:' + newName)
+            }
         }
     }
 }
