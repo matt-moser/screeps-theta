@@ -1,7 +1,7 @@
 const roleSpecs = {
     worker: [WORK, CARRY, MOVE],
     upgrader: [WORK, CARRY, MOVE],
-    claimer: [WORK, CARRY, MOVE, CLAIM]
+    claimer: [MOVE, CLAIM]
 }
 
 const autoSpawner = function autoSpawner () {
