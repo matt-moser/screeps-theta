@@ -22,7 +22,7 @@ const autoSpawner = function autoSpawner () {
 
     if (spawn) {
         for(let name in Game.spawns) {
-            const newName = nextRole + (roleMap[nextRole] ? roleMap[nextRole] + 1 : 1);
+            const newName = nextRole + (roleMap[nextRole] ? roleMap[nextRole] : 1);
             const result = Game.spawns[name].spawnCreep([WORK, CARRY, MOVE], newName, {
                 memory: {role: nextRole}
             })
