@@ -1,14 +1,10 @@
-const countByRole = function() {
-
-}
-
 const autoSpawner = function autoSpawner () {
     const desiredRoles = {
         harvester: 3,
         upgrader: 6,
-        builder: 1
+        builder: 3
     }
-    
+
     let spawn = false;
     for(let role in desiredRoles) {
         roleCreeps = _.filter(Game.creeps, (creep) => creep.memory.role == role);
