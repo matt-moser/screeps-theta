@@ -8,7 +8,7 @@ const autoSpawner = function autoSpawner () {
     const desiredRoles = {
         worker: 12,
         upgrader: 6,
-        claimer: 3
+        claimer: (Game.gcl.level - 1)
     }
 
     let spawn = false;
