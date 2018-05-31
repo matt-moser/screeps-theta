@@ -1,20 +1,22 @@
+const roleSpecs = {
+    harvester: [WORK, CARRY, MOVE],
+    upgrader: [WORK, CARRY, MOVE],
+    builder: [WORK, CARRY, MOVE],
+    claimer: [WORK, CARRY, MOVE, CLAIM]
+}
+
 const autoSpawner = function autoSpawner () {
     const desiredRoles = {
         harvester: 3,
         upgrader: 6,
-        builder: 1
+        builder: 3
     }
 
-    const roleMap = {};
-    for (let creepName in Game.creeps) {
-        let creep = Game.creeps[creepName];
-        roleMap[creep.memory.role] = roleMap[creep.memory.role] ? roleMap[creep.memory.role] + 1 : 1;
-    }
-
-    let nextRole = 'harvester';
     let spawn = false;
     for(let role in desiredRoles) {
-        if (!roleMap[role]  || roleMap[role] < desiredRoles[role]) {
+        roleCreeps = _.filter(Game.creeps, (creep) => creep.memory.role == role);
+
+        if (roleCreeps.length < desiredRoles[role]) {
             nextRole = role;
             spawn = true;
             break;
@@ -23,8 +25,8 @@ const autoSpawner = function autoSpawner () {
 
     if (spawn) {
         for(let name in Game.spawns) {
-            const newName = nextRole + (roleMap[nextRole] ? roleMap[nextRole]+1 : 1);
-            const result = Game.spawns[name].spawnCreep([WORK, CARRY, MOVE], newName, {
+            const newName = nextRole + Game.time;
+            const result = Game.spawns[name].spawnCreep(roleSpecs[nextRole], newName, {
                 memory: {role: nextRole}
             })
             if (result >= 0) {
