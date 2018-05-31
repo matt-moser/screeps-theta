@@ -24,7 +24,7 @@ module.exports.loop = function () {
             roleUpgrader.run(creep);
         }
         if(creep.memory.role == 'builder') {
-            builderManager.run(creep)
+            roleBuilder.run(creep)
         }
     }
 }
