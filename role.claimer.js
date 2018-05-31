@@ -1,40 +1,24 @@
 module.exports = {
     run: function(creep){
-
-        if(creep.memory.building && creep.carry.energy == 0) {
-            creep.memory.building = false;
-            creep.say('🔄 harvest');
-        }
-        if(!creep.memory.building && creep.carry.energy == creep.carryCapacity) {
-            creep.memory.building = true;
-            creep.say('🚧 build');
-        }
-
-        const extensions = creep.room.find(FIND_MY_STRUCTURES, {
-            filter: { structureType: STRUCTURE_EXTENSION }
-        });
-
-        const notBuiltExtensions = creep.room.find(FIND_CONSTRUCTION_SITES, {
-            filter: { structureType: STRUCTURE_EXTENSION }
-        })
-
-
-        const currentSpawn = creep.room.find(FIND_MY_STRUCTURES, {
-            filter: { structureType: STRUCTURE_SPAWN }
-        })
-
-        if(creep.memory.building) {
-            var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
-            if(targets.length) {
-                if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
-                }
+        if (!creep.memory.explored) {
+            creep.pos.findClosestByRange(FIND_EXIT);
+            if(target) {
+                creep.moveTo(target);
+                creep.memory.explored = true;
             }
-        }
-        else {
-            var sources = creep.room.find(FIND_SOURCES);
-            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+        } else {
+            let r = creep.claimController(creep.room.controller);
+            if (r === ERR_NOT_IN_RANGE) {
+                // move towards the controller
+                creep.moveTo(creep.room.controller);
+            } else if (r === ERR_GCL_NOT_ENOUGH){
+                const reserve = creep.reserveController(creep.room.controller);
+                if (reserve !== 0) {
+                    console.log('Claimer reserving error: ' + re);
+                    creep.moveTo(creep.room.controller);
+                }
+            } else if (r !== 0) {
+                console.log('Claimer error: ' + r);
             }
         }
     }
