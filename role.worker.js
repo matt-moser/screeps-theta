@@ -75,19 +75,12 @@ module.exports = {
 
             if (target) {
                 creep.say('🔄 return');
-                var spawnTarget = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+                var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_SPAWN) &&
+                        return (structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_EXTENSION) &&
                             structure.energy < structure.energyCapacity;
                     }
                 });
-                var extTarget = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-                    filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_EXTENSION) &&
-                            structure.energy < structure.energyCapacity;
-                    }
-                });
-                var target = spawnTarget ? spawnTarget : extTarget;
                 if (target) {
                     if(creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
