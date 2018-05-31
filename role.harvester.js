@@ -5,11 +5,11 @@ var roleHarvester = {
 
 	    if(!creep.memory.harvesting && creep.carry.energy < creep.carryCapacity) {
             creep.memory.harvesting = true
-            creep.say('🛠️harvest');
+            creep.say('🛠️ harvest');
         }
         if(creep.memory.harvesting && creep.carry.energy >= creep.carryCapacity) {
             creep.memory.harvesting = false
-            creep.say('🛠️return');
+            creep.say('🛠️ return');
         }
 
 
@@ -32,7 +32,7 @@ var roleHarvester = {
                 }
             }
             else{
-                creep.say('🛠️idle⁉️');
+                creep.say('🛠️ idle⁉️');
             }
         }
 	}
