@@ -31,6 +31,9 @@ const autoSpawner = function autoSpawner () {
             if (result >= 0) {
                 console.log('Succesfully Spawning Creep:' + newName)
             }
+            else (
+                console.log('Failed to spawn ' + nextRole + '.  Code ' + result)
+            )
         }
     }
 }
