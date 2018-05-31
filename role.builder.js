@@ -23,7 +23,7 @@ module.exports = {
             filter: { structureType: STRUCTURE_SPAWN }
         })
 
-        if((notBuiltExtensions.length + extensions.length) < 2) {
+        if((notBuiltExtensions.length + extensions.length) < 1) {
             console.log(JSON.stringify(currentSpawn[0]))
             console.log(JSON.stringify(currentSpawn[0].pos))
             var currentRoomPosition = currentSpawn[0].pos
