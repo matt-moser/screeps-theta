@@ -1,8 +1,8 @@
 const autoSpawner = function autoSpawner () {
     const desiredRoles = {
         harvester: 3,
-        upgrader: 3,
-        builder: 3
+        upgrader: 6,
+        builder: 1
     }
 
     const roleMap = {};
