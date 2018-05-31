@@ -2,7 +2,7 @@ const currentSpawn = creep.room.find(FIND_MY_STRUCTURES, {
     filter: { structureType: STRUCTURE_SPAWN }
 })
 
-function buildConstructionSite() {
+function buildConstructionSite(creep) {
     console.log(JSON.stringify(currentSpawn[0]))
     console.log(JSON.stringify(currentSpawn[0].pos))
     var currentRoomPosition = currentSpawn[0].pos
@@ -53,7 +53,7 @@ module.exports = {
             })
     
             if((notBuiltExtensions.length + extensions.length) < 1) {
-                buildConstructionSite();
+                buildConstructionSite(creep);
             }
 
             if (extensions.length < 1) {
