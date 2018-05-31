@@ -51,7 +51,7 @@ module.exports = {
                 filter: { structureType: STRUCTURE_EXTENSION }
             })
 
-            if (extensions.length < 1) {
+            if (notBuiltExtensions.length > 0) {
                 creep.say('🚧 build');
                 var targets = creep.room.findClosestByPath(FIND_CONSTRUCTION_SITES);
                 if(targets.length) {
