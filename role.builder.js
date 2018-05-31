@@ -3,11 +3,11 @@ module.exports = {
 
         if(creep.memory.building && creep.carry.energy == 0) {
             creep.memory.building = false;
-            creep.say('🔄 harvest');
+            creep.say('🚧harvest');
         }
         if(!creep.memory.building && creep.carry.energy == creep.carryCapacity) {
             creep.memory.building = true;
-            creep.say('🚧 build');
+            creep.say('🚧build');
         }
 
         if(Room.energyCapacityAvailable == Room.energyAvailable) {
@@ -30,6 +30,9 @@ module.exports = {
                 if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
                 }
+            }
+            else{
+                creep.say('🚧idle⁉️');
             }
         }
         else {
