@@ -68,26 +68,25 @@ module.exports = {
                 filter: { structureType: STRUCTURE_EXTENSION }
             })
 
-            if (notBuiltExtensions.length > 0) {
-                creep.say('🚧 build');
-                var target = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
-                if(target) {
-                    if(creep.build(target) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
-                    }
+            var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
+                        structure.energy < structure.energyCapacity;
                 }
-            } else {
+            });
+
+            if (target) {
                 creep.say('🔄 return');
                 var spawnTarget = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (tructure.structureType == STRUCTURE_SPAWN) &&
+                        return (structure.structureType == STRUCTURE_SPAWN) &&
                             structure.energy < structure.energyCapacity;
                     }
                 });
                 var extTarget = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_EXTENSION) &&
-                            structure.energy < structure.energyCapacity;
+                            structurestructure.energy < structure.energyCapacity;
                     }
                 });
                 var target = spawnTarget ? spawnTarget : extTarget;
@@ -99,6 +98,14 @@ module.exports = {
                 else{
                     buildConstructionSite(creep);
                     creep.say('⁉️ Nowhere to return resources and nothing to build');
+                }
+            } else {
+                creep.say('🚧 build');
+                var target = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
+                if(target) {
+                    if(creep.build(target) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
+                    }
                 }
             }
         }
