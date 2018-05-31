@@ -1,7 +1,9 @@
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
+var autoSpawner = require('autospawner.js');
 
 module.exports.loop = function () {
+    autoSpawner();
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     console.log('Harvesters: ' + harvesters.length);
