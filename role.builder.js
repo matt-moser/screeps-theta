@@ -11,16 +11,16 @@ module.exports = {
         }
 
         if(Room.energyCapacityAvailable == Room.energyAvailable) {
-            const extensions = Room.find(FIND_MY_STRUCTURES, {
+            const extensions = creep.room.find(FIND_MY_STRUCTURES, {
                 filter: { structureType: STRUCTURE_EXTENSION }
             });
 
-            const notBuiltExtensions = Room.find(FIND_CONSTRUCTION_SITES, {
+            const notBuiltExtensions = creep.room.find(FIND_CONSTRUCTION_SITES, {
                 filter: { structureType: STRUCTURE_EXTENSION }
             })
 
             if((notBuiltExtensions.length + extensions.length) < 5) {
-                Room.createConstructionSite(STRUCTURE_EXTENSION)
+                creep.room.createConstructionSite(STRUCTURE_EXTENSION)
             }
         }
 
