@@ -8,7 +8,7 @@ const autoSpawner = function autoSpawner () {
     const desiredRoles = {
         worker: 6,
         upgrader: 6,
-        builder: 3
+        claimer: 3
     }
 
     let spawn = false;
