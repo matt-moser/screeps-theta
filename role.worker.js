@@ -74,7 +74,8 @@ module.exports = {
                     }
                 }
                 else{
-                    creep.say('⁉️ Nowhere to return resources and nothing to build');
+                    buildConstructionSite();
+                    //creep.say('⁉️ Nowhere to return resources and nothing to build');
                 }
             }
         }
