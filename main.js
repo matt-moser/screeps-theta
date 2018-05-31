@@ -1,6 +1,6 @@
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
-var builderManager = require('role.builder');
+var roleBuilder = require('role.builder');
 var autoSpawner = require('autospawner');
 
 module.exports.loop = function () {
