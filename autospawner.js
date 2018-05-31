@@ -1,13 +1,12 @@
 const roleSpecs = {
-    harvester: [WORK, CARRY, MOVE],
+    worker: [WORK, CARRY, MOVE],
     upgrader: [WORK, CARRY, MOVE],
-    builder: [WORK, CARRY, MOVE],
     claimer: [WORK, CARRY, MOVE, CLAIM]
 }
 
 const autoSpawner = function autoSpawner () {
     const desiredRoles = {
-        harvester: 3,
+        worker: 6,
         upgrader: 6,
         builder: 3
     }
