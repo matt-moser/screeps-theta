@@ -14,7 +14,7 @@ const autoSpawner = function autoSpawner () {
     let nextRole = 'harvester';
     let spawn = false;
     for(let role in desiredRoles) {
-        if (roleMap[role] < desiredRoles[role]) {
+        if (!roleMap[role]  || roleMap[role] < desiredRoles[role]) {
             nextRole = role;
             spawn = true;
             break;
@@ -23,7 +23,7 @@ const autoSpawner = function autoSpawner () {
 
     if (spawn) {
         for(let name in Game.spawns) {
-            const newName = nextRole + (roleMap[nextRole] ? roleMap[nextRole] : 1);
+            const newName = nextRole + (roleMap[nextRole] ? roleMap[nextRole]+1 : 1);
             const result = Game.spawns[name].spawnCreep([WORK, CARRY, MOVE], newName, {
                 memory: {role: nextRole}
             })
